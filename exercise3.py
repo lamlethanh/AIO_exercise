@@ -20,7 +20,7 @@ def cal_loss(y1, y2, name):
         return MSE(y1, y2)
     return result
 
-def exercise3():
+def choose_regress_loss_func():
     num_sample = input("Input number of samples (integer number) which are generated: ")
     if (num_sample.isnumeric()):
         num_sample = int(num_sample)
@@ -41,5 +41,5 @@ def exercise3():
         else:
             print(f"{loss_name} is not supported")
 
-exercise3()
+choose_regress_loss_func()
             
