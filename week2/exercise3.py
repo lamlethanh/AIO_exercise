@@ -1,29 +1,18 @@
 def count_string(file):
-    ans = {}
+    dict_temp = {}
     for line in file:
-        str_temp = list(line.split(' '))
-        for word in str_temp:
-            if word not in ans:
-                ans.update({word: 1})
+        arr_string = sorted(line.split())
+        for string in arr_string:
+            if string not in dict_temp.keys():
+                dict_temp.update({string: 1})
             else:
-                ans[word] += 1
-    return ans
+                dict_temp[string] += 1
+    sorted_keys = sorted(dict_temp)
+    dict_ans = {key: dict_temp[key] for key in sorted_keys}
+    return dict_ans
 
 
-def sort_dict(dict):
-    my_keys = list(dict.keys())
-    my_keys.sort()
-    sorted_dict = {i: dict[i] for i in my_keys}
-    return sorted_dict
-
-
-filepath = 'C:\\Python\\AIO2024\\AIO_exercise\\week2\\P1_data.txt'
-f = open(filepath, 'r')
-file = f.readlines()
-for i in file:
-    print(i)
-
-arr_count_string = count_string(file)
-arr_count_string = sort_dict(arr_count_string)
-
-print(arr_count_string)
+link = "C:\\Python\\AIO2024\\AIO_exercise\\week2\\P1_data.txt"
+f = open(link, "r")
+dict_ans = count_string(f)
+print(dict_ans)
