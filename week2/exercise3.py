@@ -15,4 +15,4 @@ def count_string(file):
 link = "C:\\Python\\AIO2024\\AIO_exercise\\week2\\P1_data.txt"
 f = open(link, "r")
 dict_ans = count_string(f)
-print(dict_ans)
+print(dict_ans["man"])
