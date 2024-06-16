@@ -1,21 +1,26 @@
-def levenshtein(s1, s2):
-    if len(s1) < len(s2):
-        return levenshtein(s2, s1)
-    if len(s2) == 0:
-        return len(s1)
+def levenshtein(string1, string2):
+    if (len(string1) == 0):
+        return len(string2)
+    if (len(string1) > len(string2)):
+        return levenshtein(string2, string1)
 
-    previous_row = range(len(s2) + 1)
-    for i, c1 in enumerate(s1):
-        current_row = [i + 1]
-        for j, c2 in enumerate(s2):
-            insertions = previous_row[j + 1] + 1 
-            deletions = current_row[j] + 1       
-            substitutions = previous_row[j] + (c1 != c2)
-            current_row.append(min(insertions, deletions, substitutions))
-        previous_row = current_row
+    # 'previous' is used to save levenshtein distance between first i elements in string2 and first j-th elements in string1
+    previous = range(len(string2)+1)
+    for i, value1 in enumerate(previous):
+        # 'current' is used to count calculate levenshtein distance between first i elements in string2 and first j-th elements in string1
+        current = [i + 1]
+        for j, value2 in enumerate(current):
+            insert_cost = previous[j+1] + 1
+            delete_cost = current[j] + 1
+            substitution = current[j] + (value1 != value2)
+            current.append(min(insert_cost, delete_cost, substitution))
 
-    return previous_row[-1]
+        # Update 'previous' after finish calculating 'current'
+        previous = current
 
-str_S = input()
-str_T = input()
-print (levenshtein(str_S, str_T))
+    return previous[-1]
+
+
+string1 = input()
+string2 = input()
+print(string1, string2)
